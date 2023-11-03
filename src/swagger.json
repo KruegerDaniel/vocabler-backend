@@ -1,0 +1,1063 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Vocabler API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:8081",
+  "basePath": "/",
+  "paths": {
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get specific users",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "404": {
+            "description": "Invalid User object"
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register new user",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "Invalid User object"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login user",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Log-In failed"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Logout user",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "Log-Out failed"
+          }
+        }
+      }
+    },
+    "/users/reset-password/{id}/{token}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Reset password",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "Failed to reset the password"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "token",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/users/forgot-password": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Forgot password",
+        "description": "Rest password when forgotten",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "Failed to send the password reset link"
+          }
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "summary": "Get all books",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "404": {
+            "description": "Invalid Book object"
+          }
+        }
+      }
+    },
+    "/books/genres": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "summary": "Get specific genre",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "body",
+            "description": "Genre",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "404": {
+            "description": "Invalid Book object"
+          }
+        }
+      }
+    },
+    "/books/search": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "summary": "Search for book",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "body",
+            "description": "Title of the book",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          {
+            "name": "author",
+            "in": "body",
+            "description": "Author of the book",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "400": {
+            "description": "Missing query parameter name"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/books/{book_id}": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "summary": "Get book",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "404": {
+            "description": "Invalid Book object"
+          }
+        }
+      }
+    },
+    "/reviews": {
+      "get": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "Get all reviews",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          },
+          "400": {
+            "description": "Invalid Review object"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "Add a new review",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Review object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          },
+          "400": {
+            "description": "Invalid Review object"
+          }
+        }
+      }
+    },
+    "/reviews/{id}": {
+      "put": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "Update review",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Review object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          },
+          "400": {
+            "description": "Invalid Review object"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Review"
+        ],
+        "summary": "Delete review",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          },
+          "400": {
+            "description": "Invalid Review object"
+          }
+        }
+      }
+    },
+    "/study/deck": {
+      "post": {
+        "tags": [
+          "StudyProfile"
+        ],
+        "summary": "Create a new deck",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Deck object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudyProfile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StudyProfile"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/study/session/flashcard/{flashcardId}": {
+      "put": {
+        "tags": [
+          "StudyProfile"
+        ],
+        "summary": "Rate flashcard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "flashcardId",
+            "in": "path",
+            "description": "ID of flashcard to rate",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Flashcard"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/study/session/config": {
+      "put": {
+        "tags": [
+          "StudyProfile"
+        ],
+        "summary": "Set session config",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Session config object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudyProfile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StudyProfile"
+            }
+          },
+          "403": {
+            "description": "Forbidden - User may not edit studyConfig"
+          },
+          "400": {
+            "description": "Invalid StudyProfile object"
+          }
+        }
+      }
+    },
+    "/study/session/flashcard": {
+      "get": {
+        "tags": [
+          "StudyProfile"
+        ],
+        "summary": "Get flashcards",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Flashcard"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Users": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "registrationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "profilePic": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "userRole": {
+          "type": "string"
+        },
+        "bookList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Book"
+          }
+        },
+        "studyProfileId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Review"
+          }
+        },
+        "subscriptionProfile": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubscriptionProfile"
+          }
+        }
+      }
+    },
+    "SubscriptionProfile": {
+      "type": "object",
+      "properties": {
+        "subscriptionDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "nextPaymentDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "discount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalAmount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payments": {
+          "type": "string"
+        }
+      }
+    },
+    "Book": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "publicationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "pages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "coverImage": {
+          "type": "string"
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Review"
+          }
+        },
+        "totalWords": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uniqueWords": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "difficulty": {
+          "type": "string"
+        },
+        "affiliateLink": {
+          "type": "string"
+        },
+        "vocabList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Vocab"
+          }
+        },
+        "users": {
+          "type": "object",
+          "properties": {
+            "finished": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Users"
+              }
+            },
+            "reading": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Users"
+              }
+            },
+            "planToRead": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Vocab": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lexicalEntryId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lemma": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "string"
+        },
+        "freq": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "body": {
+          "type": "string"
+        },
+        "entertainmentRating": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "educationalRating": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "likes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dislikes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "book": {
+          "$ref": "#/definitions/Book"
+        },
+        "user": {
+          "$ref": "#/definitions/Users"
+        }
+      }
+    },
+    "StudyProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "flashcards": {
+          "type": "object",
+          "properties": {
+            "startTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "newCards": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Flashcard"
+              }
+            },
+            "reviewCards": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Flashcard"
+              }
+            },
+            "repeatCards": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Flashcard"
+              }
+            }
+          }
+        },
+        "extractionDeck": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Deck"
+          }
+        },
+        "decks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Deck"
+          }
+        },
+        "studySession": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudySession"
+          }
+        },
+        "studySessionDuration": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Flashcard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lexicalEntryId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pos": {
+          "type": "string"
+        },
+        "studyHistory": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "studyLevel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "decks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "deckId": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/definitions/Deck"
+                }
+              },
+              "freq": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        },
+        "freqCorpus": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Deck": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "bookId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "studyProfileId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "vocabLearned": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "coverage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "uniqueWords": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalWords": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "LexicalEntry": {
+      "type": "object",
+      "properties": {
+        "lemma": {
+          "type": "string"
+        },
+        "a": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/EntryDefinition"
+          }
+        },
+        "v": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/EntryDefinition"
+          }
+        },
+        "n": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/EntryDefinition"
+          }
+        },
+        "r": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/EntryDefinition"
+          }
+        },
+        "s": {
+          "type": "object",
+          "items": {
+            "$ref": "#/definitions/EntryDefinition"
+          }
+        }
+      }
+    },
+    "EntryDefinition": {
+      "type": "object",
+      "properties": {
+        "definitions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "freqRank": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "StudySession": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "newCards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "items": {
+              "$ref": "#/definitions/Flashcard"
+            }
+          }
+        },
+        "reviewCards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "items": {
+              "$ref": "#/definitions/Flashcard"
+            }
+          }
+        },
+        "repeatCards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "items": {
+              "$ref": "#/definitions/Flashcard"
+            }
+          }
+        }
+      }
+    }
+  }
+}
